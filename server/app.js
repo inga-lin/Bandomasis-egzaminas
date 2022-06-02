@@ -4,6 +4,8 @@ const port = 3003;
 const cors = require("cors");
 app.use(cors());
 const mysql = require("mysql");
+md5 = require('js-md5');//900 md5 ikriep projektam nenaudoti nes nesaugus slaptazodziu generaorius
+const uuid = require('uuid');//900 sesijos rakto generatorius(random belenkoks kodas)
 
 app.use(express.json({limit: '50mb'}));//505 per cia bus galima didele foto ideti
 app.use(express.urlencoded({limit: '50mb'}));//505 per cia bus galima didele foto ideti
