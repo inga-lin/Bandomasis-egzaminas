@@ -3,7 +3,7 @@ import axios from 'axios';
 //import '../bootstrap.css';
 import '../back.css';
 import MovieEdit from './MovieEdit';
-import Modal from './Modal';
+//import Modal from './Modal';
 
 // cia Movie List lentele su Edit ir Delete
 
@@ -12,7 +12,7 @@ function Back() {
   const [movies, setMovies] = useState([]);//--parsisiunciam kazkokiu daliku 
   //3)funkcija kuri is createData komponento paims informacija kuria reikia issiusti ir irasys serveri
   //const [createData, setCreateData] = useState(null);//3 
-  const [editData, setEditData] = useState(null);//10. ir ji perduosim per Modal ir ten pasiimsim
+ // const [editData, setEditData] = useState(null);//10. ir ji perduosim per Modal ir ten pasiimsim
 
   const [deleteId, setDeleteId] = useState(null);//8trinimo buttonas
 
@@ -32,17 +32,17 @@ function Back() {
 
 
   //10Edit 
-  useEffect(() => {
-    if (null === editData) {
-      return;
-    }
-    axios.put('http://localhost:3004/praso-manager/' + editData.id, editData) // !!!!!! nepamirst po manager / padeti
-    .then(res => {
-      console.log(res);
-      setLastUpdate(Date.now());//7paskutinis pakeitimas turi buti dabartine Data
-    });
+  //useEffect(() => {
+  //  if (null === editData) {
+ //     return;
+ //   }
+  //  axios.put('http://localhost:3004/praso-manager/' + editData.id, editData) // !!!!!! nepamirst po manager / padeti
+  //  .then(res => {
+  //    console.log(res);
+  //    setLastUpdate(Date.now());//7paskutinis pakeitimas turi buti dabartine Data
+  //  });
 
-  },[editData]);
+ // },[editData]);
 
 
   //8 Delete buttonas ir tai dar apsirasyti app.js serverio puseje

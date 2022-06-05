@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from "react";
-import axios from 'axios';
+import { useState, useRef, } from "react";
+//import axios from 'axios';
 import getBase64 from "../Functions/getBase64";
 ////////////////////////////////
 
@@ -10,9 +10,7 @@ function Create({setCreateData}) { //{/*3pasiimam per cia savo setCreateData is 
     const [tekstas, setTekstas] = useState('');//(movie title-)
     const [nuotrauka, setNuotrauka] = useState('');//(movie price)
     const [norimasuma, setNorimasuma] = useState('');
-    //const [category, setCategory] = useState('1');//(movie category ir kadangi jis uzstatytas su pasirinkimu tai parasom '1')
-    //const [rating, setRating] = useState('');
-    // 1)ir i visus imputus surasomju reiksmes (value={title}, value={category}, value={category})
+
 
 
     const fileInput = useRef();
@@ -23,8 +21,8 @@ function Create({setCreateData}) { //{/*3pasiimam per cia savo setCreateData is 
 
         if (file) {
             getBase64(file)
-                .then(photo => {
-                    console.log(photo);
+                .then(nuotrauka => {
+                    console.log(nuotrauka);
                     setCreateData({
                         tekstas,
                         nuotrauka,
@@ -84,18 +82,15 @@ function Create({setCreateData}) { //{/*3pasiimam per cia savo setCreateData is 
             <div className="cardBodyAdd">
                 <div className="form-group">
                     <label>Aprašyk savo norą</label>
-                    <textarea placeholder="Tekstas..." className="form-control" onChange={e => inputHandler(e, 'tekstas')} value={tekstas} /><textarea/>
+                    <textarea placeholder="Tekstas..." className="form-control" onChange={e => inputHandler(e, 'tekstas')} value={tekstas} />
                 </div>
                 <div className="containerMovieGroup">
                     <div className="row">
                     <div className="col-12">
                         <div className="form-group"> {/*nuotrauka*/}
                             <label>Įdėk nuotrauką</label>
-                            <input ref={fileInput} type="file" className="form-control" />
-                            <div className="buttons">
-                            <button type="button" className="btn btn-outline-primary m-3" onClick={buttonHandler}>Add</button>
-                        </div>{/*nuotrauka*/}
-                        </div>
+                            <input ref={fileInput} type="file" className="form-control" onChange={e => inputHandler(e, 'nuotrauka')} value={nuotrauka}/>
+                        </div> {/*nuotrauka*/}
                         
                     </div>
                     <div className="col-4">
