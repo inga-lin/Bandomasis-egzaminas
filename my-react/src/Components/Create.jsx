@@ -77,7 +77,7 @@ function Create({setCreateData}) { //{/*3pasiimam per cia savo setCreateData is 
     return (
         <div className="back-container">
             <div className="back-title">
-                <h2>Norų lentelė</h2>
+                <h2 className="h2">Tavo noras</h2>
             </div>
             <div className="cardBodyAdd">
                 <div className="form-group">

@@ -83,6 +83,9 @@
     
 }
 
+.h2{
+    color: white;
+}
 .movie-line__content {
     display: flex;
     justify-content: flex-start;
