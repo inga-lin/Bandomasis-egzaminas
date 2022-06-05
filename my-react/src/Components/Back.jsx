@@ -12,7 +12,7 @@ function Back() {
 
   const [movies, setMovies] = useState([]);//--parsisiunciam kazkokiu daliku 
   //3)funkcija kuri is createData komponento paims informacija kuria reikia issiusti ir irasys serveri
-  const [createData, setCreateData] = useState(null);//3 
+  //const [createData, setCreateData] = useState(null);//3 
   const [editData, setEditData] = useState(null);//10. ir ji perduosim per Modal ir ten pasiimsim
 
   const [deleteId, setDeleteId] = useState(null);//8trinimo buttonas
@@ -29,19 +29,8 @@ function Back() {
         setMovies(res.data);//padarom kad per cia pasiimam savo movies is serverio
       })
   }, [lastUpdate]); //7.
+////////////////////////////////
 
-  //Create
-  //3)funkcija kuri is createData komponento paims informacija kuria reikia issiusti ir irasys serveri
-  //3)useEffect pas mus vyks kai pasikeis creatoData
-  useEffect(() => {
-    if (null === createData) { //3)jeigu createData yra === null nieko nedarom ir einam lauk is cia
-      return;
-    }
-    axios.post('http://localhost:3004/praso-manager', createData)//3)kai jis  jau tures kazka naujo tai ta nauja info dedam i 'http://localhost:3003/movies-manager', createData //post-isiusti
-    .then(res => {
-      console.log(res);  //3)console.log(res) pasiziurim ka mums servas atsakys
-      setLastUpdate(Date.now()) }); //7paskutinis pakeitimas turi buti dabartine Data
-  },[createData])
 
   //10Edit 
   useEffect(() => {
@@ -76,7 +65,7 @@ function Back() {
     <div className="container">
       <div className="row">
         <div className="col-4">
-          <Create setCreateData={setCreateData}></Create> {/*3 perduodam setCreateData i Create.jsx*/}
+         
         </div>
         <div className="col-8">
           <div className="card m-2">

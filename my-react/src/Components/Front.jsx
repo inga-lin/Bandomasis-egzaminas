@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"; //a.butinas linkams darant. is cia http
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../front.css';
+import Create from "./Create";
 //import '../bootstrap.css';
 //import '../front.scss';
 
@@ -12,6 +13,11 @@ function Front({ show }) { //b. pasiemam propsa is App.jsx
 
     const [movies, setMovies] = useState([]);
     const [lastUpdate, setLastUpdate] = useState(Date.now()); 
+
+
+
+    const [createData, setCreateData] = useState(null);
+
 
 
     // Read
@@ -31,6 +37,25 @@ function Front({ show }) { //b. pasiemam propsa is App.jsx
                 setLastUpdate(Date.now());
             });
         }
+
+
+
+  //Create
+  //3)funkcija kuri is createData komponento paims informacija kuria reikia issiusti ir irasys serveri
+  //3)useEffect pas mus vyks kai pasikeis creatoData
+  useEffect(() => {
+    if (null === createData) { //3)jeigu createData yra === null nieko nedarom ir einam lauk is cia
+      return;
+    }
+    axios.post('http://localhost:3004/praso-manager', createData)//3)kai jis  jau tures kazka naujo tai ta nauja info dedam i 'http://localhost:3003/movies-manager', createData //post-isiusti
+    .then(res => {
+      console.log(res);  //3)console.log(res) pasiziurim ka mums servas atsakys
+      setLastUpdate(Date.now()) }); //7paskutinis pakeitimas turi buti dabartine Data
+  },[createData])
+
+
+
+
     return (
         <>
             <div className="front-color">
@@ -40,6 +65,7 @@ function Front({ show }) { //b. pasiemam propsa is App.jsx
                     <div className="navbar-nav">
                         <Link className="nav-link" to="/">Home</Link>  {/*//a.butinas linkams (<Link className="nav-link" to="/">Home</Link>)*/}
                         <Link className="nav-link" to="/sukurkideja">Sukurk idėją</Link>{/*//a.butinas linkams /leaf nurodo kaip i ji patekti i http://localhost:3000/leaf*/}
+                       <Create setCreateData={setCreateData}></Create>
                     </div>   
                 </nav>
             </div>

@@ -66,20 +66,20 @@ app.get("/praso-list/all", (req, res) => { //all atskiras routas visu medziu gav
 
 })
 
-app.get("/praso-list/:cat", (req, res) => { //cat yra parametras jeigu tai neta all iesko 'leaf','spike','palm' ir kazkuri is ju atidaro
-if (req.params.cat != "all") {
-const sql = `
-      SELECT
-      *
-     FROM praso
-      WHERE category = ?
- `;
-con.query(sql, [['sukurkideja'].indexOf(req.params.cat) + 1], (err, result) => { //b.mes gaunam zodzius ir juos paverciam i indeksa
-if (err) throw err;
-res.send(result);
-});
-}
-});
+//app.get("/praso-list/:cat", (req, res) => { //cat yra parametras jeigu tai neta all iesko 'leaf','spike','palm' ir kazkuri is ju atidaro
+//if (req.params.cat != "all") {
+//const sql = `
+//      SELECT
+//      *
+//     FROM praso
+//      WHERE sukurkideja = ?
+// `;
+//con.query(sql, [['sukurkideja'].indexOf(req.params.cat) + 1], (err, result) => { //b.mes gaunam zodzius ir juos paverciam i indeksa
+//if (err) throw err;
+//res.send(result);
+//});
+//}
+//});
 
 //////////////////////////
 

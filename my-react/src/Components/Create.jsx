@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import getBase64 from "../Functions/getBase64";
-
+////////////////////////////////
 
 //cia Add New movie lentele
 
@@ -8,8 +8,9 @@ function Create({setCreateData}) { //{/*3pasiimam per cia savo setCreateData is 
     //kadangi turim 3 irasymo laukelius tai turim juos sukontroliuoti(movie title)
     const [tekstas, setTekstas] = useState('');//(movie title-)
     const [nuotrauka, setNuotrauka] = useState('');//(movie price)
+    const [norimasuma, setNorimasuma] = useState('');
     //const [category, setCategory] = useState('1');//(movie category ir kadangi jis uzstatytas su pasirinkimu tai parasom '1')
-    const [rating, setRating] = useState('');
+    //const [rating, setRating] = useState('');
     // 1)ir i visus imputus surasomju reiksmes (value={title}, value={category}, value={category})
 
     const fileInput = useRef();
@@ -25,22 +26,25 @@ function Create({setCreateData}) { //{/*3pasiimam per cia savo setCreateData is 
                     setCreateData({
                         tekstas,
                         nuotrauka,
-                        //type,
-                        //size
+                        norimasuma,
+                        //surinktasuma,
+                        //likusisuma
                     });
                 });
         } else {
             setCreateData({
                 tekstas,
                 nuotrauka: null,
-                //type,
-                
-               // size
+                norimasuma,
+                //surinktasuma,
+               // likusisuma
             });
         }
         setTekstas('');
         setNuotrauka('');
-       // setType(1);
+        setNorimasuma('');
+       // setSurinktasuma('');
+       // setLikusisuma('');
     }//4)ir ji perduodam i buttona onClick={buttonHandler} ir einam i server-App.js
 
     //2)apsirasom funkcija kuri gauna event(is pildomos lenteles(Add New movie)) ir which-kuri norim kad jis kontruoliuotu
@@ -57,14 +61,14 @@ function Create({setCreateData}) { //{/*3pasiimam per cia savo setCreateData is 
             //setCategory(e.target.value);
            // break;
             case 'norimasuma': //2jeigu jis yra 'price' tai tada setinam tai ka gaunam is setPrice(e.target.value.replace(/,/g, '.')-sitas padaro kad kablelius pavestu i taska);
-            setRating(e.target.value.replace(/,/g, '.'));
+            setNorimasuma(e.target.value.replace(/,/g, '.'));
             break;
-            case 'surinktasuma': //2jeigu jis yra 'price' tai tada setinam tai ka gaunam is setPrice(e.target.value.replace(/,/g, '.')-sitas padaro kad kablelius pavestu i taska);
-            setRating(e.target.value.replace(/,/g, '.'));
-            break;
-            case 'likusisuma': //2jeigu jis yra 'price' tai tada setinam tai ka gaunam is setPrice(e.target.value.replace(/,/g, '.')-sitas padaro kad kablelius pavestu i taska);
-            setRating(e.target.value.replace(/,/g, '.'));
-            break;
+           // case 'surinktasuma': //2jeigu jis yra 'price' tai tada setinam tai ka gaunam is setPrice(e.target.value.replace(/,/g, '.')-sitas padaro kad kablelius pavestu i taska);
+            //setSurinktasuma(e.target.value.replace(/,/g, '.'));
+           // break;
+            //case 'likusisuma': //2jeigu jis yra 'price' tai tada setinam tai ka gaunam is setPrice(e.target.value.replace(/,/g, '.')-sitas padaro kad kablelius pavestu i taska);
+           // setLikusisuma(e.target.value.replace(/,/g, '.'));
+           // break;
             default: //2ir juos sukisam irgi i imputus(onChange={e => inputHandler(e, 'title')},onChange={e => inputHandler(e, 'price')}, onChange={e => inputHandler(e, 'category')})
         }
     }
@@ -72,35 +76,31 @@ function Create({setCreateData}) { //{/*3pasiimam per cia savo setCreateData is 
     return (
         <div className="back-container">
             <div className="back-title">
-                <h2>Noru lentele</h2>
+                <h2>Norų lentelė</h2>
             </div>
             <div className="cardBodyAdd">
                 <div className="form-group">
-                    <label>Movie title</label>
-                    <input category="text" className="form-control" onChange={e => inputHandler(e, 'tekstas')} value={tekstas} />
-                    <small className="form-text text-muted">Add new movie name here.</small>
+                    <label>Aprašyk savo norą</label>
+                    <textarea placeholder="Tekstas..." className="form-control" onChange={e => inputHandler(e, 'tekstas')} value={tekstas} /><textarea/>
                 </div>
                 <div className="containerMovieGroup">
                     <div className="row">
                     <div className="col-12">
                         <div className="form-group"> {/*nuotrauka*/}
-                            <label>Photo</label>
+                            <label>Įdėk nuotrauką</label>
                             <input ref={fileInput} type="file" className="form-control" />
-                            <small className="form-text text-muted">Tree photo.</small>
-                        </div>
-                        </div>
-                        <div className="buttons">
+                            <div className="buttons">
                             <button type="button" className="btn btn-outline-primary m-3" onClick={buttonHandler}>Add</button>
                         </div>{/*nuotrauka*/}
-                        
-                        <div className="col-4">
-                            <div className="form-group">
-                                <label>Movie rating</label>
-                                <input category="text" className="form-control" onChange={e => inputHandler(e, 'rating')} value={rating} />
-                                <small className="form-text text-muted">Movie rating.</small>
-                            </div>
                         </div>
-
+                        
+                    </div>
+                    <div className="col-4">
+                        <div className="form-group">
+                            <label>Norima pinigų suma</label>
+                            <input type="number" className="form-control" onChange={e => inputHandler(e, 'norimasuma')} value={norimasuma} />
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
