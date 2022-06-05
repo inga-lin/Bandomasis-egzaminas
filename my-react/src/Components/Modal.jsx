@@ -1,80 +1,57 @@
-import { useEffect, useState, useRef } from "react";
-import getBase64 from "../Functions/getBase64";
-function Modal({ setModalData, modalData, setEditData,sizes }) {//sizes 1000
+import { useEffect, useState } from "react";
+//import star from '../img/star.svg';
+
+//Modalo lentele
+function Modal({setModalData, modalData, setEditData}) {
 //modalData visas medis ant modalo
 //9. is Create.jsx nusikopinam dali kodo
-//Edit tree
-const [title, setTitle] = useState('');
-const [height, setHeight] = useState('');
-const [type, setType] = useState('1');
-const [id, setId] = useState('0');
-const [remove, setRemove] = useState(false);//*600 istrinam nuotrauka jeigu uzdesim varnele//false kad butu varnele pradzioje neuzdets
-const [size, setSize] = useState('0');//1000
-const fileInput = useRef();
+//Edit movie
+    const [tekstas, setTekstas] = useState('');
+    const [price, setPrice] = useState('');
+    const [category, setCategory] = useState('1');
+    const [rating, setRating] = useState('');
+    const [id, setId] = useState('0');//11 pradinis bus 0
 
-const buttonHandler = () => {
-    const file = fileInput.current.files[0];
-
-    if (file) {
-        getBase64(file)//505
-            .then(photo => {
-                console.log(photo);
-                setEditData({
-                    title,
-                    height,
-                    type,
-                    id,
-                    size,//1000
-                    photo,
-                    del: remove ? 1 : 0//600 del(deletle) keiciam arba bus pazymetas arba nea deletle checkbox
-                });
-                setModalData(null);
-                setRemove(false);//600 istrinam nuotrauka jeigu uzdesim varnele
-            });
-    } else {//505
-        setEditData({
-            title,
-            height,
-            type,
-            id,
-            size,//1000
-            photo: '',//'' reiskia nuotraukos nera
-            del: remove ? 1 : 0//600 del(deletle) keiciam arba bus pazymetas arba nea deletle checkbox
+    const buttonHandler = () => {
+        setEditData({ //10 cia turi tu
+            tekstas,
+            price,
+            category,
+            rating,
+            id//11
         });
-        setModalData(null);
-        setRemove(false);//*600 istrinam nuotrauka jeigu uzdesim varnele
+        setModalData(null);//11kai uzpildom modalo lentele ji turi nusinulint(issitrinti duomenys)
     }
-}
 
-const inputHandler = (e, which) => {
-    switch (which) {
-        case 'title':
-            setTitle(e.target.value);
+    const inputHandler = (e, which) => {
+        switch(which) {
+            case 'tekstas': 
+            setTekstas(e.target.value);
             break;
-        case 'height':
-            setHeight(e.target.value.replace(/,/g, '.'));
+            case 'price': 
+            setPrice(e.target.value.replace(/,/g, '.'));
             break;
-        case 'type':
-            setType(e.target.value);
+            case 'category': 
+            setCategory(e.target.value);
             break;
-        case 'size'://1000
-             setSize(e.target.value);
-            break;  
-        default:
+            case 'rating': //2jeigu jis yra 'price' tai tada setinam tai ka gaunam is setPrice(e.target.value.replace(/,/g, '.')-sitas padaro kad kablelius pavestu i taska);
+            setRating(e.target.value.replace(/,/g, '.'));
+            break;
+            default:
+        }
     }
-}
-
 
     useEffect(() => {
         if (modalData === null) { //9jeigu modalData === null modale nebus duomenu ir uzsidarys modalas
-            setTitle('');
-            setHeight('');
-            setType(1);
+            setTekstas('');
+            setPrice('');
+            setCategory(1);
+            setRating('');
         } else { // 9priesingu atveju pas mus modalas atsidarineje ir matysis duomenys is anksciau suvestu
-            setTitle(modalData.name);
-            setHeight(modalData.height);
-            setType(modalData.type);
-            setSize(modalData.size);//1000
+            setTekstas(modalData.tekstas);
+            setPrice(modalData.price);
+            setCategory(modalData.category);
+            setRating(modalData.rating);
             setId(modalData.id);//11
         }
     }, [modalData])
@@ -88,73 +65,55 @@ const inputHandler = (e, which) => {
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" className="close" onClick={() => setModalData(null)}>
+                        <h5 className="modaltitle" id="exampleModalLabel">Edit movie</h5>
+                        <button category="button" className="close" onClick={() => setModalData(null)}>{/*paspaudus x per setModalData(null) bus uzdaroma modallentele */}
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div className="modal-body">
                         <div className="card-body">
-                            <div className="form-group">
-                                <label>Tree title</label>
-                                <input type="text" className="form-control" onChange={e => inputHandler(e, 'title')} value={title} />
-                                <small className="form-text text-muted">Add new tree name here.</small>
+                            <div className="form-group fg">
+                                <label className='modal-label'>Movie title</label>
+                                <input category="text" className="form-control" onChange={e => inputHandler(e, 'tekstas')} value={tekstas} />
+                                <small className="modalSmallText">Add new movie name here.</small>
                             </div>
                             <div className="container p-0">
                                 <div className="row">
                                     <div className="col-4">
-                                        <div className="form-group">
-                                            <label>Tree height</label>
-                                            <input type="text" className="form-control" onChange={e => inputHandler(e, 'height')} value={height} />
-                                            <small className="form-text text-muted">Tree height.</small>
+                                        <div className="form-group fg">
+                                            <label className='modal-label'>Movie price</label>
+                                            <input category="text" className="form-control" onChange={e => inputHandler(e, 'price')} value={price} />
+                                            <small className="modalSmallText">Movie price.</small>
                                         </div>
                                     </div>
                                     <div className="col-8">
-                                        <div className="form-group">
-                                            <label>Tree type</label>
-                                            <select className="form-control" onChange={e => inputHandler(e, 'type')} value={type}>
-                                                <option value="1">Leaf</option>
-                                                <option value="2">Spike</option>
-                                                <option value="3">Palm</option>
+                                        <div className="form-group fg">
+                                            <label className='modal-label'>Movie category</label>
+                                            <select className="form-control" onChange={e => inputHandler(e, 'category')} value={category}>
+                                            <option value="1">Documentary</option>
+                                            <option value="2">Family</option>
+                                            <option value="3">Animation</option>
+                                            <option value="4">Drama</option>
+                                            <option value="5">Horror</option>
                                             </select>
-                                            <small className="form-text text-muted">Tree type.</small>
+                                            <small className="modalSmallText">Movie category.</small>
                                         </div>
                                     </div>
-                                    <div className="col-8">{/*1000*/}
-                                        <div className="form-group">
-                                            <label>Tree Sizes</label>
-                                            <select className="form-control" onChange={e => inputHandler(e, 'size')} value={size}>
-                                                {
-                                                    sizes.map(s => <option key={s.id} value={s.id}>{s.size}</option>)
-                                                }
-                                            </select>
-                                            <small className="form-text text-muted">Tree type.</small>
+                                    <div className="col-4">
+                                        <div className="form-group fg">
+                                            <label className='modal-label'>Movie rating</label>
+                                            <input category="text" className="form-control" onChange={e => inputHandler(e, 'rating')} value={rating} />
+                                            <small className="modalSmallText">Movie rating.</small>
                                         </div>
-                                    </div>
-                                    <div className="col-12">
-                                        <div className="form-group">{/*600 -cia padarom kad foto galima butu pakeisti ir su <input type="checkbox" pazymejus ji istrina photo*/}
-                                            <label>Photo</label>
-                                            <input ref={fileInput} type="file" className="form-control" />{/*505 cia butinai dadeti ref={fileInput}-(ateina su getBase64 atsiradimu) o type="file"- su input laukelio kurimu, kad buutonas failo pasirinkimui atsirastu*/}
-                                            <small className="form-text text-muted">Tree photo.</small>
-                                        </div>
-                                    </div>
-                                    <div className="col-2">
-                                        <div className="form-group form-check">
-                                            <input type="checkbox" className="form-check-input" onChange={() => setRemove(r => !r)}  checked={remove} />{/*600 istrinam nuotrauka jeigu uzdesim varnele*/}
-                                            <label className="form-check-label">Delete Photo</label>
-                                        </div>
-                                    </div>
-                                    <div className="col-10">
-                                        {modalData.photo ? <img alt="foto" className="photo" src={modalData.photo}></img> : null}{/*600 jei nuotrauka bus pasirinkta ja rodys jeigu nebus nerodys*/}
                                     </div>
 
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="modal-footer">
-                        <button type="button" className="btn btn-outline-primary m-3 save" onClick={buttonHandler}>Save</button>
-                        <button type="button" className="btn btn-outline-danger m-3 cancel" onClick={() => setModalData(null)}>Cancel</button>
+                    <div className="modalfooter">
+                        <button category="button" className="buttonSave" onClick={buttonHandler}>Save</button>{/*11. nusinulina duomenys is modalo ir uzsidaro lenteles paspaudus save*/}
+                        <button category="button" className="butonsCancel"  onClick={() => setModalData(null)}>Cancel</button>{/*paspaudus Cancel per setModalData(null) bus uzdaroma modal lentele */}
                     </div>
                 </div>
             </div>

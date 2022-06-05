@@ -1,0 +1,175 @@
+/* Create*/
+.back-container {
+  font-family: 'Lexend Deca', sans-serif;
+  font-size: 20px;
+}
+
+.back-title{
+  text-align: center;
+}
+.cardBodyAdd {
+  display: grid;
+  gap: 10px;
+  width: 500px;
+  margin-left: calc(50% - 250px);
+  background-color: #f5f0f0e4;
+  border: 4px solid #980505;
+  border-radius: 30px 0px 0px 0px;
+}
+
+.form-group{
+  display: grid;
+  gap: 10px;
+  padding: 20px;
+  border-bottom: 4px solid #980505;
+}
+
+.form-control {
+ padding: 10px;
+ font-size: 18px;
+}
+/* Create*/
+
+/*MovieEdit*/
+.cardMovieList {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 30px;
+}
+
+.MovieListcard-body {
+  width: 700px;
+  margin-left: calc(50% - 350px);
+  font-size: 40px;
+}
+
+.buttonEditDeletle{
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 2px solid #980505;
+  width: 95%;
+}
+
+.mlc {
+  border-bottom: none !important;
+  margin-right: none !important;
+}
+
+.mlc > span {
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.lg {
+  border: 10px solid #980505 !important;
+  border-radius: 30px !important;
+}
+/*MovieEdit*/
+/*Modal*/
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(156, 30, 30, 0.888);
+  display: flex;
+  /*align-items: center;*/
+  justify-content: center;
+  box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.5);
+}
+
+.modaltitle{
+  font-weight: 500;
+  font-size: 35px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+}
+
+.modal-header{
+ position: relative;    
+}
+
+.close {
+  position: absolute;
+  top: -10px;
+  right: -100px;
+  padding: 2px;
+}
+
+.close:hover {
+  color: white ;
+  border-color: white ;
+  background-color: #980505;
+}
+
+.modal-label{
+  font-weight: 500;
+  font-size: 20px;
+  color: white; 
+}
+
+.modalSmallText {
+  color: white; 
+  font-size: 15px;
+}
+
+.fg {
+ padding: 2px; 
+}
+
+.modalfooter {
+  display: flex;
+  justify-content: center;
+}
+/*Modal*/
+/*button*/
+button {
+  padding: 10px 15px;
+  border-radius: 10px 0px;
+  font-weight: bold;
+  font-size: 15px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.buttonsAdd {
+  display: flex;
+  justify-content: center;
+  background-color: #980505;
+  border-radius: 0px 0px 20px 0px;
+  width: 508px;
+  margin-left: calc(50% - 250px);
+  margin-top: -10px;
+}
+
+.buttonAdd, .butonsCancel {
+  background-color: rgb(242, 191, 9);
+}
+
+.buttonAdd:hover, .butonsCancel:hover {
+  background-color: white;
+  color: rgb(242, 191, 9) ;
+  border-color: rgb(242, 191, 9) ;
+}
+
+.buttonEdit , .buttonSave {
+  background-color: green;
+}
+
+.buttonEdit:hover, .buttonSave:hover {
+ background-color: white;
+ color: green ;
+ border-color: green ;
+}
+
+.buttonDelete {
+  background-color: #980505;
+}
+
+.buttonDelete:hover {
+  background-color: white;
+  color: #980505 ;
+  border-color: #980505 ;
+}
+/*button*/
