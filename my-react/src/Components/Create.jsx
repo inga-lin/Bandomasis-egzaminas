@@ -1,4 +1,5 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import axios from 'axios';
 import getBase64 from "../Functions/getBase64";
 ////////////////////////////////
 
@@ -12,6 +13,7 @@ function Create({setCreateData}) { //{/*3pasiimam per cia savo setCreateData is 
     //const [category, setCategory] = useState('1');//(movie category ir kadangi jis uzstatytas su pasirinkimu tai parasom '1')
     //const [rating, setRating] = useState('');
     // 1)ir i visus imputus surasomju reiksmes (value={title}, value={category}, value={category})
+
 
     const fileInput = useRef();
     //4kai paspaudziam mygtuka mes i serveri isiunvcia informacija apie nauja suvesta zmogaus irasa
@@ -72,6 +74,7 @@ function Create({setCreateData}) { //{/*3pasiimam per cia savo setCreateData is 
             default: //2ir juos sukisam irgi i imputus(onChange={e => inputHandler(e, 'title')},onChange={e => inputHandler(e, 'price')}, onChange={e => inputHandler(e, 'category')})
         }
     }
+
 
     return (
         <div className="back-container">

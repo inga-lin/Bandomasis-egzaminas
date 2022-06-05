@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 //import '../bootstrap.css';
 import '../back.css';
-import Create from './Create';
 import MovieEdit from './MovieEdit';
 import Modal from './Modal';
 
@@ -83,7 +82,7 @@ function Back() {
         </div>
       </div>
     </div>
-      <Modal setEditData={setEditData} setModalData={setModalData} modalData={modalData}></Modal>{/*9.jis setModalData ir dar ziuri ka pasetinam modalData(pasirodo kai turim ka parodyti) */}
+      {/*<Modal setEditData={setEditData} setModalData={setModalData} modalData={modalData}></Modal>{/*9.jis setModalData ir dar ziuri ka pasetinam modalData(pasirodo kai turim ka parodyti) */}
     </>
   );
 }
