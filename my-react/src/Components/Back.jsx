@@ -61,7 +61,7 @@ function Back() {
 
   return (
     <>
-    <div className="container">
+    <div className="container backCont">
       <div className="row">
         <div className="col-4">
          

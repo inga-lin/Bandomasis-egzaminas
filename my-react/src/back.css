@@ -41,6 +41,7 @@
   width: 700px;
   margin-left: calc(50% - 350px);
   font-size: 40px;
+  
 }
 
 .buttonEditDeletle{
@@ -48,8 +49,16 @@
   justify-content: flex-end;
   border-bottom: 2px solid #980505;
   width: 95%;
+  
 }
 
+body {
+  background-color: green;
+}
+.backCont{
+  background-color: green;
+  height: 100% !important;
+}
 .mlc {
   border-bottom: none !important;
   margin-right: none !important;
