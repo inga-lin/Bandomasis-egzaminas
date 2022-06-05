@@ -69,7 +69,7 @@ function Back() {
         <div className="col-8">
           <div className="card m-2">
             <div className="cardMovieList">
-              <h2>Movie List</h2>
+              <h2>Žmonių norai</h2>
             </div>
             <div className="MovieListcard-body">
               <ul className="list-group lg">

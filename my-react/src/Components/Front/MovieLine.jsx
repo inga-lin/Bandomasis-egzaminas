@@ -1,18 +1,18 @@
 
 //is Front/MovieLine.jsx
-function MovieLine ({movie , saveComment}) {
+function MovieLine ({movie}) {
 
 
 
 
-    
+
     return (
         <li className="list-group-item">
             <div className="movie-line">
                 <div className="movie-line__content">
 
                      <div className="image-holder ml-4">
-                        <img src={movie.nuotrauka} alt="nuotrauka"></img>
+                        <img style={{height:"50px"}} src={movie.nuotrauka} alt="nuotrauka"></img>
                     </div>
                     <div className="tree-line__content__comments">
                     {
@@ -21,9 +21,9 @@ function MovieLine ({movie , saveComment}) {
                     </div>
                     <span>{movie.tekstas}</span>
 
-                    <span>Reikalinga suma: <br></br>{movie.norimasuma} Euro</span>
-                    <span>Surinkta suma:<br></br>{movie.surinktasuma} Euro</span>
-                    <span>Liko surinkti:<br></br>{movie.likusisuma} Euro</span>
+                    <span>Reikalinga suma: <br></br>{movie.norimasuma} Eurų</span>
+                    <span>Surinkta suma:<br></br>{movie.surinktasuma} Eurų</span>
+                    <span>Liko surinkti:<br></br>{movie.likusisuma} Eurų</span>
                 </div>
             </div>
         </li>
